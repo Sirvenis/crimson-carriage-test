@@ -1,0 +1,50 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#551b24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Crimson Carriage">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Murder on the Crimson Carriage</title>
+  <link rel="manifest" href="manifest.webmanifest?v=2">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+  <header class="hero">
+    <div class="eyebrow">A fair-play digital dinner mystery</div>
+    <h1>Murder on the Crimson Carriage</h1>
+    <p id="tagline">Search train cars, question suspects, compare the timeline, accuse.</p>
+    <div class="hero-actions">
+      <button id="startBtn">Start investigation</button>
+      <button id="howBtn" class="secondary">How to play</button>
+      <button id="contrastBtn" class="secondary">High contrast</button>
+    </div>
+  </header>
+  <main>
+    <section id="intro" class="panel open">
+      <h2>Quick start</h2>
+      <p><strong>The loop:</strong> search rooms → collect clues → unlock suspect questions → check timeline → make a structured accusation.</p>
+      <ol id="howList"></ol>
+    </section>
+    <nav class="tabs" aria-label="Investigation sections">
+      <button data-view="locations" class="active">Train Cars</button>
+      <button data-view="suspects">Suspects</button>
+      <button data-view="timeline">Timeline</button>
+      <button data-view="notebook">Notebook</button>
+      <button data-view="accuse">Accuse</button>
+      <button data-view="host">Host Kit</button>
+    </nav>
+    <section id="view" class="panel"></section>
+  </main>
+  <footer>
+    <span id="saveStatus">Autosaved locally.</span>
+    <button id="resetBtn" class="linklike">Reset progress</button>
+  </footer>
+  <script src="app.js?v=2"></script>
+</body>
+</html>

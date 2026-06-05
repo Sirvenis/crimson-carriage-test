@@ -1,0 +1,562 @@
+{
+  "meta": {
+    "title": "Murder on the Crimson Carriage",
+    "tagline": "A railway dinner mystery with a timetable, a poisoned toast, and one impossible alibi.",
+    "version": "v1",
+    "setting": "The Crimson Carriage, a luxury sleeper train crossing the Blue Mountains in 1934.",
+    "victim": "Sir Reginald Pike, railway magnate and owner of the Crimson Line.",
+    "tone": "Elegant, tense, family-friendly, fair-play mystery.",
+    "playtime": "20-35 minutes",
+    "loop": "Search train cars, question suspects, compare the timeline, review notebook, accuse."
+  },
+  "howToPlay": [
+    "Search each train car to collect clues.",
+    "Question suspects. New follow-up questions unlock when you find related clues.",
+    "Use the timeline map to spot the impossible alibi.",
+    "Make a structured accusation: killer, method, opportunity, and evidence.",
+    "Use hints if stuck, but your detective rating drops."
+  ],
+  "locations": [
+    {
+      "id": "dining-car",
+      "name": "Dining Car",
+      "icon": "\ud83c\udf7d\ufe0f",
+      "description": "White linen, brass lamps, a half-finished champagne toast, and the victim slumped beside the dessert trolley.",
+      "clueIds": [
+        "toast-glass",
+        "dessert-menu",
+        "seat-card"
+      ]
+    },
+    {
+      "id": "galley",
+      "name": "Galley",
+      "icon": "\u2615",
+      "description": "A narrow kitchen carriage smelling of coffee, caramel, and coal smoke.",
+      "clueIds": [
+        "sugar-tongs",
+        "chef-ledger",
+        "locked-tea-caddy"
+      ]
+    },
+    {
+      "id": "sleeping-car",
+      "name": "Sleeping Car",
+      "icon": "\ud83d\udecf\ufe0f",
+      "description": "Private compartments, polished mahogany doors, and a corridor where every minute matters.",
+      "clueIds": [
+        "valise-ticket",
+        "torn-blue-thread"
+      ]
+    },
+    {
+      "id": "observation-platform",
+      "name": "Observation Platform",
+      "icon": "\ud83d\ude83",
+      "description": "Cold mountain air, cinders on the rail, and a service bell rope leading back toward the galley.",
+      "clueIds": [
+        "bell-rope-smudge",
+        "platform-footprint",
+        "wind-torn-note"
+      ]
+    },
+    {
+      "id": "conductor-office",
+      "name": "Conductor's Office",
+      "icon": "\ud83d\udd70\ufe0f",
+      "description": "Timetables, key hooks, telegram slips, and the official movement log.",
+      "clueIds": [
+        "movement-log",
+        "telegram-debt",
+        "watch-time"
+      ]
+    }
+  ],
+  "suspects": [
+    {
+      "id": "mrs-adelia-vale",
+      "name": "Mrs. Adelia Vale",
+      "role": "Etiquette columnist and railway investor",
+      "avatar": "\ud83d\udc52",
+      "public": {
+        "bio": "Composed, silver-tongued, and obsessed with railway manners. She hosted the private toast before dessert.",
+        "alibi": "Claims she was on the observation platform admiring the valley when Sir Reginald collapsed.",
+        "suspicious": "She handled the sugar service shortly before the toast."
+      },
+      "private": {
+        "secret": "Sir Reginald had proof she had been embezzling from a widows' railway trust.",
+        "motive": "He planned to expose her after dinner, ruining her public life.",
+        "lie": "She says she never returned from the observation platform, but the bell-rope smudge and sugar residue prove otherwise.",
+        "voice": "Polished, icy, corrects manners even when cornered."
+      },
+      "matrix": {
+        "means": true,
+        "motive": true,
+        "opportunity": true,
+        "clearedBy": null
+      },
+      "isKiller": true,
+      "questions": [
+        {
+          "id": "q-toast",
+          "label": "Ask about the toast",
+          "answer": "Sir Reginald insisted everyone raise a glass. I merely reminded the table that sugar belongs in tea, not champagne.",
+          "unlocks": []
+        },
+        {
+          "id": "q-platform",
+          "label": "Ask about the observation platform",
+          "answer": "The night air steadies the nerves. I was outside while the gentlemen argued over timetables.",
+          "unlocks": []
+        },
+        {
+          "id": "q-sugar",
+          "label": "Ask about the sugar tongs",
+          "requires": [
+            "sugar-tongs"
+          ],
+          "answer": "Those tongs? Every table had a pair. How could one possibly remember who touched them?",
+          "unlocks": [
+            "bell-rope-smudge"
+          ]
+        },
+        {
+          "id": "q-smudge",
+          "label": "Confront with the bell-rope smudge",
+          "requires": [
+            "bell-rope-smudge",
+            "sugar-tongs"
+          ],
+          "answer": "A lady may call for service. That is not a crime. Though I admit... I briefly stepped back inside.",
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "captain-hugh-mallory",
+      "name": "Captain Hugh Mallory",
+      "role": "Retired officer",
+      "avatar": "\ud83c\udf96\ufe0f",
+      "public": {
+        "bio": "A decorated veteran travelling with a locked dispatch case.",
+        "alibi": "Claims he was asleep in compartment three during dessert.",
+        "suspicious": "A blue military thread was found near the sleeping-car corridor."
+      },
+      "private": {
+        "secret": "He forged war-supply records with Sir Reginald years ago.",
+        "motive": "Reginald used the forgery to blackmail him.",
+        "lie": "He was awake and searching for a stolen telegram.",
+        "voice": "Blunt, formal, ashamed beneath the bluster."
+      },
+      "matrix": {
+        "means": false,
+        "motive": true,
+        "opportunity": true,
+        "clearedBy": "watch-time"
+      },
+      "isKiller": false,
+      "questions": [
+        {
+          "id": "q-war",
+          "label": "Ask about Sir Reginald",
+          "answer": "Pike was no gentleman. But old debts are not the same as murder.",
+          "unlocks": []
+        },
+        {
+          "id": "q-thread",
+          "label": "Ask about the blue thread",
+          "requires": [
+            "torn-blue-thread"
+          ],
+          "answer": "My sleeve tore on the compartment latch before dinner. The conductor can confirm the time.",
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "miss-lila-penn",
+      "name": "Miss Lila Penn",
+      "role": "Jazz singer",
+      "avatar": "\ud83c\udf99\ufe0f",
+      "public": {
+        "bio": "The headline performer in the lounge car, travelling under a stage name.",
+        "alibi": "Claims she was rehearsing alone when the victim died.",
+        "suspicious": "A threatening note in her handwriting was found torn by the wind."
+      },
+      "private": {
+        "secret": "She is Sir Reginald's unacknowledged daughter.",
+        "motive": "He refused to recognize her and threatened to cancel her contract.",
+        "lie": "She wrote the note, but never sent it.",
+        "voice": "Bright, quick, defensive when treated like entertainment."
+      },
+      "matrix": {
+        "means": false,
+        "motive": true,
+        "opportunity": false,
+        "clearedBy": "movement-log"
+      },
+      "isKiller": false,
+      "questions": [
+        {
+          "id": "q-note",
+          "label": "Ask about the torn note",
+          "requires": [
+            "wind-torn-note"
+          ],
+          "answer": "Yes, I wrote it. I wanted him frightened, not dead. The station clock proves I was in the lounge before the toast.",
+          "unlocks": []
+        },
+        {
+          "id": "q-family",
+          "label": "Ask why the argument was personal",
+          "requires": [
+            "telegram-debt"
+          ],
+          "answer": "He was my father, though he'd rather derail a train than admit it.",
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "mr-oscar-bell",
+      "name": "Mr. Oscar Bell",
+      "role": "Head steward",
+      "avatar": "\ud83d\udece\ufe0f",
+      "public": {
+        "bio": "Knows every table setting, timetable, and passenger habit on the Crimson Line.",
+        "alibi": "Claims he was serving coffee in the dining car.",
+        "suspicious": "His ledger shows a missing tea caddy key."
+      },
+      "private": {
+        "secret": "He has been selling first-class passenger gossip to newspapers.",
+        "motive": "Sir Reginald discovered the leak and planned to dismiss him.",
+        "lie": "He hid the caddy key because it exposed his gossip notes, not poison.",
+        "voice": "Efficient, anxious, eager to please."
+      },
+      "matrix": {
+        "means": true,
+        "motive": true,
+        "opportunity": false,
+        "clearedBy": "seat-card"
+      },
+      "isKiller": false,
+      "questions": [
+        {
+          "id": "q-key",
+          "label": "Ask about the tea caddy key",
+          "requires": [
+            "locked-tea-caddy"
+          ],
+          "answer": "I misplaced it after luncheon. Foolish, yes. Fatal, no. I never touched the sugar bowl after Mrs. Vale corrected the setting.",
+          "unlocks": []
+        },
+        {
+          "id": "q-service",
+          "label": "Ask who handled the sugar service",
+          "requires": [
+            "seat-card"
+          ],
+          "answer": "Mrs. Vale moved it. She said Sir Reginald's place setting was 'provincial'. I remember because she made me redo the whole table.",
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "dr-jonas-quill",
+      "name": "Dr. Jonas Quill",
+      "role": "Railway physician",
+      "avatar": "\ud83e\ude7a",
+      "public": {
+        "bio": "A nervous doctor hired by the company after a previous accident scandal.",
+        "alibi": "Claims he was examining a seasick passenger in the sleeper car.",
+        "suspicious": "Only he could name the poison quickly."
+      },
+      "private": {
+        "secret": "He falsified a medical report after an earlier Crimson Line crash.",
+        "motive": "Reginald threatened to sacrifice him to protect the company.",
+        "lie": "He recognized the poison because he treated it before, not because he used it.",
+        "voice": "Clinical, evasive, guilt-ridden."
+      },
+      "matrix": {
+        "means": true,
+        "motive": true,
+        "opportunity": false,
+        "clearedBy": "movement-log"
+      },
+      "isKiller": false,
+      "questions": [
+        {
+          "id": "q-poison",
+          "label": "Ask how he recognized the poison",
+          "requires": [
+            "toast-glass"
+          ],
+          "answer": "Bitter-almond breath, rapid collapse, tremor. I saw the same symptoms in a lab assistant years ago.",
+          "unlocks": []
+        },
+        {
+          "id": "q-office",
+          "label": "Ask about the old crash telegram",
+          "requires": [
+            "telegram-debt"
+          ],
+          "answer": "Pike kept all of us on chains. But I was with Mrs. Harrow in compartment two at the fatal minute.",
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "violet-harrow",
+      "name": "Violet Harrow",
+      "role": "Heiress to a rival rail fortune",
+      "avatar": "\ud83d\udc8e",
+      "public": {
+        "bio": "Young, impatient, and publicly humiliated by Sir Reginald's latest business betrayal.",
+        "alibi": "Claims she fainted in her compartment before dessert.",
+        "suspicious": "Her ticket stub was hidden inside the victim's valise."
+      },
+      "private": {
+        "secret": "She planned to buy the Crimson Line after forcing Reginald into bankruptcy.",
+        "motive": "He stole her takeover offer and exposed her finances.",
+        "lie": "She met him before dinner, but left angry and alive.",
+        "voice": "Sharp, glamorous, more strategic than she appears."
+      },
+      "matrix": {
+        "means": false,
+        "motive": true,
+        "opportunity": true,
+        "clearedBy": "valise-ticket"
+      },
+      "isKiller": false,
+      "questions": [
+        {
+          "id": "q-ticket",
+          "label": "Ask about the ticket in the valise",
+          "requires": [
+            "valise-ticket"
+          ],
+          "answer": "It was proof he double-crossed me. I slipped it into his bag as a threat: I knew what he'd done.",
+          "unlocks": []
+        },
+        {
+          "id": "q-faint",
+          "label": "Ask about fainting",
+          "answer": "I did not faint. I said I might. People hear whatever makes young women harmless.",
+          "unlocks": []
+        }
+      ]
+    }
+  ],
+  "clues": [
+    {
+      "id": "toast-glass",
+      "title": "Bitter Toast Glass",
+      "locationId": "dining-car",
+      "type": "true",
+      "decisive": true,
+      "job": "means",
+      "text": "Sir Reginald's glass smells faintly of bitter almond. The poison was in something added at the table, not cooked in the galley.",
+      "prereqIds": []
+    },
+    {
+      "id": "dessert-menu",
+      "title": "Dessert Menu",
+      "locationId": "dining-car",
+      "type": "support",
+      "decisive": false,
+      "job": "context",
+      "text": "Dessert was plum tart with unsweetened cream. Several guests asked for sugar at the table.",
+      "prereqIds": []
+    },
+    {
+      "id": "seat-card",
+      "title": "Rearranged Seat Card",
+      "locationId": "dining-car",
+      "type": "true",
+      "decisive": true,
+      "job": "identity",
+      "text": "Mrs. Vale corrected Sir Reginald's place setting and moved the sugar bowl within reach of his glass before the toast.",
+      "prereqIds": []
+    },
+    {
+      "id": "sugar-tongs",
+      "title": "Silver Sugar Tongs",
+      "locationId": "galley",
+      "type": "true",
+      "decisive": true,
+      "job": "method",
+      "text": "Powder is caught inside the hinge of one pair of sugar tongs. The poison could be delivered as sugar crystals dropped into a single glass.",
+      "prereqIds": [
+        "toast-glass"
+      ]
+    },
+    {
+      "id": "chef-ledger",
+      "title": "Chef's Galley Ledger",
+      "locationId": "galley",
+      "type": "red-herring",
+      "decisive": false,
+      "job": "false means",
+      "text": "The chef signed out almond essence for dessert, explaining why the dining car already smelled faintly sweet.",
+      "prereqIds": []
+    },
+    {
+      "id": "locked-tea-caddy",
+      "title": "Locked Tea Caddy",
+      "locationId": "galley",
+      "type": "red-herring",
+      "decisive": false,
+      "job": "false means",
+      "text": "A locked caddy is missing its key. Inside are gossip notes and newspaper clippings, not poison.",
+      "prereqIds": []
+    },
+    {
+      "id": "valise-ticket",
+      "title": "Hidden Ticket Stub",
+      "locationId": "sleeping-car",
+      "type": "red-herring",
+      "decisive": false,
+      "job": "false motive",
+      "text": "Violet Harrow hid a rival railway ticket in Pike's valise to threaten him over a takeover betrayal.",
+      "prereqIds": []
+    },
+    {
+      "id": "torn-blue-thread",
+      "title": "Torn Blue Thread",
+      "locationId": "sleeping-car",
+      "type": "support",
+      "decisive": false,
+      "job": "false identity",
+      "text": "A blue thread by compartment three matches Captain Mallory's cuff, but the tear happened before dinner.",
+      "prereqIds": []
+    },
+    {
+      "id": "bell-rope-smudge",
+      "title": "Sugar Smudge on Bell Rope",
+      "locationId": "observation-platform",
+      "type": "true",
+      "decisive": true,
+      "job": "opportunity",
+      "text": "A sticky sugar smudge marks the service bell rope on the observation platform. Someone with sugar residue called the steward, then returned inside through the service door.",
+      "prereqIds": [
+        "sugar-tongs"
+      ]
+    },
+    {
+      "id": "platform-footprint",
+      "title": "Narrow Platform Footprint",
+      "locationId": "observation-platform",
+      "type": "support",
+      "decisive": false,
+      "job": "timeline",
+      "text": "A narrow shoe print faces inward, not outward. The platform alibi involved returning to the carriage, not admiring the view.",
+      "prereqIds": []
+    },
+    {
+      "id": "wind-torn-note",
+      "title": "Wind-Torn Threat Note",
+      "locationId": "observation-platform",
+      "type": "red-herring",
+      "decisive": false,
+      "job": "false motive",
+      "text": "Lila wrote that Pike 'would not survive the night as a fatherless tyrant.' Angry, but not operational.",
+      "prereqIds": []
+    },
+    {
+      "id": "movement-log",
+      "title": "Conductor's Movement Log",
+      "locationId": "conductor-office",
+      "type": "true",
+      "decisive": true,
+      "job": "timeline",
+      "text": "At 9:17, Mrs. Vale was recorded stepping onto the platform. At 9:20, the service door opened from the platform side. Pike collapsed at 9:22.",
+      "prereqIds": []
+    },
+    {
+      "id": "telegram-debt",
+      "title": "Blackmail Telegram",
+      "locationId": "conductor-office",
+      "type": "support",
+      "decisive": false,
+      "job": "motive web",
+      "text": "Pike threatened almost everyone aboard: a forged war record, an old crash report, a hidden daughter, and a stolen takeover deal.",
+      "prereqIds": []
+    },
+    {
+      "id": "watch-time",
+      "title": "Stopped Pocket Watch",
+      "locationId": "conductor-office",
+      "type": "support",
+      "decisive": false,
+      "job": "clear alibi",
+      "text": "The victim's watch stopped at 9:22 when he struck the table. Captain Mallory's compartment call was logged at 9:21 by another steward.",
+      "prereqIds": []
+    }
+  ],
+  "timeline": [
+    {
+      "time": "9:05",
+      "event": "Dessert is served. Mrs. Vale complains about the table setting and moves the sugar bowl.",
+      "suspectIds": [
+        "mrs-adelia-vale",
+        "mr-oscar-bell"
+      ]
+    },
+    {
+      "time": "9:12",
+      "event": "Sir Reginald receives a telegram and announces private talks after dinner.",
+      "suspectIds": [
+        "dr-jonas-quill",
+        "captain-hugh-mallory",
+        "miss-lila-penn",
+        "violet-harrow"
+      ]
+    },
+    {
+      "time": "9:17",
+      "event": "Mrs. Vale steps onto the observation platform and is seen by the conductor.",
+      "suspectIds": [
+        "mrs-adelia-vale"
+      ]
+    },
+    {
+      "time": "9:20",
+      "event": "The platform service door opens from outside. A bell rope is pulled.",
+      "suspectIds": [
+        "mrs-adelia-vale",
+        "mr-oscar-bell"
+      ]
+    },
+    {
+      "time": "9:22",
+      "event": "The toast is made. Pike collapses after drinking from the glass nearest the sugar bowl.",
+      "suspectIds": [
+        "mrs-adelia-vale",
+        "dr-jonas-quill",
+        "mr-oscar-bell",
+        "violet-harrow",
+        "miss-lila-penn",
+        "captain-hugh-mallory"
+      ]
+    }
+  ],
+  "hints": [
+    "Do not start with motive. Everyone had one. Start with who could affect only Pike's glass.",
+    "The sugar clues are stronger than the dramatic threat note.",
+    "The platform alibi is not an absence. It is a route."
+  ],
+  "solution": {
+    "killerId": "mrs-adelia-vale",
+    "methodId": "sugar-tongs",
+    "opportunityId": "observation-platform",
+    "motive": "Sir Reginald was about to expose Mrs. Vale's theft from a widows' railway trust.",
+    "requiredClueIds": [
+      "toast-glass",
+      "seat-card",
+      "sugar-tongs",
+      "bell-rope-smudge",
+      "movement-log"
+    ],
+    "reveal": "Mrs. Adelia Vale poisoned Sir Reginald by hiding bitter poison in the sugar tongs, then using etiquette as cover to move the sugar bowl beside his glass. Her observation-platform alibi was not an absence: it was a route. The movement log and sugar-smudged bell rope prove she returned through the service door moments before the toast."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Murder on the Crimson Carriage",
+  "short_name": "Crimson Mystery",
+  "start_url": "./index.html?v=2",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#160d12",
+  "theme_color": "#551b24",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
