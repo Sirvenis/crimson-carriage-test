@@ -1,7 +1,7 @@
 {
   "name": "Murder on the Crimson Carriage",
   "short_name": "Crimson Mystery",
-  "start_url": "./index.html?v=3",
+  "start_url": "./index.html?v=4",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

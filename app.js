@@ -1,5 +1,5 @@
 
-const STORAGE_KEY = 'crimson-carriage-v3';
+const STORAGE_KEY = 'crimson-carriage-v4';
 let caseData;
 let state = { view: 'locations', clues: [], hintsUsed: 0, contrast: false };
 const $ = (s) => document.querySelector(s);
@@ -14,7 +14,7 @@ function setView(view){ state.view=view; save(); render(); }
 function availableQuestion(q){ return (q.requires||[]).every(hasClue); }
 
 async function init(){
-  caseData = await fetch('data/case-crimson-carriage.json?v=3').then(r=>r.json());
+  caseData = await fetch('data/case-crimson-carriage.json?v=4').then(r=>r.json());
   load();
   $('#tagline').textContent = caseData.meta.tagline;
   renderBriefing();
@@ -25,7 +25,7 @@ async function init(){
   $('#contrastBtn').onclick=()=>{ state.contrast=!state.contrast; document.body.classList.toggle('high', state.contrast); save(); };
   $('#resetBtn').onclick=()=>{ if(confirm('Reset this investigation?')){ localStorage.removeItem(STORAGE_KEY); location.reload(); } };
   document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>setView(b.dataset.view));
-  if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js?v=3').catch(console.warn); }
+  if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js?v=4').catch(console.warn); }
   render();
 }
 
