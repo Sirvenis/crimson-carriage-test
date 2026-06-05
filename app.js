@@ -20,7 +20,7 @@ async function init(){
   renderBriefing();
   $('#howList').innerHTML = caseData.howToPlay.map(x=>`<li>${x}</li>`).join('');
   $('#briefingBtn').onclick=()=>document.getElementById('caseBriefing').scrollIntoView({behavior:'smooth'});
-  $('#startBtn').onclick=()=>setView('locations');
+  $('#startBtn').onclick=()=>{ setView('locations'); document.querySelector('.tabs').scrollIntoView({behavior:'smooth'}); };
   $('#howBtn').onclick=()=>document.getElementById('intro').scrollIntoView({behavior:'smooth'});
   $('#contrastBtn').onclick=()=>{ state.contrast=!state.contrast; document.body.classList.toggle('high', state.contrast); save(); };
   $('#resetBtn').onclick=()=>{ if(confirm('Reset this investigation?')){ localStorage.removeItem(STORAGE_KEY); location.reload(); } };
