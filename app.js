@@ -1,5 +1,5 @@
 
-const STORAGE_KEY = 'crimson-carriage-v1';
+const STORAGE_KEY = 'crimson-carriage-v3';
 let caseData;
 let state = { view: 'locations', clues: [], hintsUsed: 0, contrast: false };
 const $ = (s) => document.querySelector(s);
@@ -14,17 +14,39 @@ function setView(view){ state.view=view; save(); render(); }
 function availableQuestion(q){ return (q.requires||[]).every(hasClue); }
 
 async function init(){
-  caseData = await fetch('data/case-crimson-carriage.json?v=2').then(r=>r.json());
+  caseData = await fetch('data/case-crimson-carriage.json?v=3').then(r=>r.json());
   load();
   $('#tagline').textContent = caseData.meta.tagline;
+  renderBriefing();
   $('#howList').innerHTML = caseData.howToPlay.map(x=>`<li>${x}</li>`).join('');
+  $('#briefingBtn').onclick=()=>document.getElementById('caseBriefing').scrollIntoView({behavior:'smooth'});
   $('#startBtn').onclick=()=>setView('locations');
   $('#howBtn').onclick=()=>document.getElementById('intro').scrollIntoView({behavior:'smooth'});
   $('#contrastBtn').onclick=()=>{ state.contrast=!state.contrast; document.body.classList.toggle('high', state.contrast); save(); };
   $('#resetBtn').onclick=()=>{ if(confirm('Reset this investigation?')){ localStorage.removeItem(STORAGE_KEY); location.reload(); } };
   document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>setView(b.dataset.view));
-  if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js?v=2').catch(console.warn); }
+  if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js?v=3').catch(console.warn); }
   render();
+}
+
+
+function renderBriefing(){
+  const b = caseData.briefing;
+  if(!b) return;
+  $('#briefingHeadline').textContent = b.headline;
+  $('#briefingOpening').textContent = b.opening;
+  $('#briefingIncident').textContent = b.incident;
+  $('#briefingRole').textContent = b.role;
+  $('#briefingStakes').textContent = b.stakes;
+  $('#knownFacts').innerHTML = b.knownFacts.map(f=>`<li>${f}</li>`).join('');
+  $('#firstMove').textContent = b.firstMove;
+  const v = b.victimCard;
+  $('#victimCard').innerHTML = `
+    <dt>Name</dt><dd>${v.name}</dd>
+    <dt>Role</dt><dd>${v.role}</dd>
+    <dt>Found</dt><dd>${v.found}</dd>
+    <dt>Cause</dt><dd>${v.cause}</dd>
+    <dt>Last words</dt><dd>${v.lastWords}</dd>`;
 }
 
 function render(){

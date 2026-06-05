@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "Murder on the Crimson Carriage",
-    "tagline": "A railway dinner mystery with a timetable, a poisoned toast, and one impossible alibi.",
-    "version": "v1",
+    "tagline": "Sir Reginald Pike has been murdered during the first-class dinner toast. Read the briefing, then search the train before the killer reaches the next station.",
+    "version": "v3",
     "setting": "The Crimson Carriage, a luxury sleeper train crossing the Blue Mountains in 1934.",
     "victim": "Sir Reginald Pike, railway magnate and owner of the Crimson Line.",
     "tone": "Elegant, tense, family-friendly, fair-play mystery.",
@@ -558,5 +558,26 @@
       "movement-log"
     ],
     "reveal": "Mrs. Adelia Vale poisoned Sir Reginald by hiding bitter poison in the sugar tongs, then using etiquette as cover to move the sugar bowl beside his glass. Her observation-platform alibi was not an absence: it was a route. The movement log and sugar-smudged bell rope prove she returned through the service door moments before the toast."
+  },
+  "briefing": {
+    "headline": "The murder you are investigating",
+    "opening": "It is 9:17 p.m. on the luxury sleeper train Crimson Carriage, high in the Blue Mountains. The first-class passengers have just raised a private champagne toast to Sir Reginald Pike, owner of the Crimson Line.",
+    "incident": "Before dessert can be served, Sir Reginald stiffens, drops his glass, and collapses beside the dessert trolley. Dr. Jonas Quill smells bitter almond on the rim of the glass and whispers one word: poison.",
+    "role": "You are the investigator on board. The train will reach Katoomba station in thirty-five minutes. Until then, every suspect is trapped in the carriages with you.",
+    "stakes": "If you cannot prove who poisoned the toast, the killer can step off with the passengers at the next stop and disappear into the crowd.",
+    "victimCard": {
+      "name": "Sir Reginald Pike",
+      "role": "Railway magnate, owner of the Crimson Line",
+      "found": "Dining Car, beside the dessert trolley",
+      "cause": "Fast-acting poison delivered during the champagne toast",
+      "lastWords": "\"To punctuality, profit, and the people who owe me everything.\""
+    },
+    "knownFacts": [
+      "The poison was not obvious until the toast was already finished.",
+      "Every suspect had a reason to fear or hate Sir Reginald.",
+      "The movement log says one suspect has an impossible alibi \u2014 but someone altered the timing.",
+      "The solution is fair-play: the decisive clues are all hidden in the train cars, suspect answers, and timeline."
+    ],
+    "firstMove": "Start in the Dining Car. Confirm how Sir Reginald died, then follow the sugar service and timetable clues."
   }
 }
